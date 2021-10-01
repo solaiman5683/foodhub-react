@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import { Container } from '@mui/material';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Error from './Components/Error/Error';
+import FoodDetails from './Components/FoodDetails/FoodDetails';
+import Foods from './Components/Foods/Foods';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container maxWidth="xl">
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <Foods></Foods>
+            </Route>
+            <Route path='/foods'>
+              <Foods></Foods>
+            </Route>
+            <Route path="/food/:idMeal">
+              <FoodDetails></FoodDetails>
+            </Route>
+            <Route path='*'>
+              <Error></Error>
+            </Route>
+          </Switch>
+        </Router>
+      </Container>
     </div>
   );
 }
